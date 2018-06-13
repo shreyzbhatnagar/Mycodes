@@ -1,2 +1,2 @@
-# Mycodes_codechef-s
+# Mycodes
 It contains basics cpp codes
