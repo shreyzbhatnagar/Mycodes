@@ -1,92 +1,91 @@
+// STACK using class
+
 #include<iostream>
-#include<string.h>
+
 
 using namespace std;
 
-int compare(char s[][11],char *temp,int R);
+int size=2;
+
+class stack
+{
+private : 
+		  int top;
+		  int *array;	
+
+
+public : 
+		 stack();
+		 int isempty();
+		 int isfull();
+		 void push(int);
+		 int pop();
+		 void printstack();
+
+};
+
+stack :: stack()
+{
+	array=new int[size];
+	top=-1;
+}
+
+void stack::printstack()
+{
+	int t=top;
+	while(t!=-1)
+	{
+		cout<<array[t--]<<endl;
+	}	
+}
+
+int stack::isempty()
+{
+	if(top==-1)
+		return 1;
+	else
+		return 0;
+}
+
+int stack::isfull()
+{
+	if(top==size)
+		return 1;
+	else
+		return 0;
+}
+
+void stack::push(int n)
+{
+	if(isfull())
+		cout<<"stack overflow";
+	else
+		array[++top]=n;
+}
+
+int stack::pop()
+{
+	if(isempty())
+	{	
+		cout<<"stack underflow";
+		return -1;
+	}	
+	else
+		return array[top--];
+}
 
 int main()
 {
+		stack q;
+		int n;
 
-	char temp[11],required[11];
-	int N,Q,size,i,flag,R,a;
+		cin>>n;
 
-	cin>>N;
-
-	char S[N][11],s[N][11];
-
-	for(i=0;i<N;i++)
-		cin>>S[i];
-
-	cin>>Q;
-
-
-	for (i=0;i<Q;i++)
-	{
-		cin>>R>>temp;
-
-
-		for(i=0;i<N;i++)
-				strcpy(s[i],S[i]);
-
-		size=compare(s,temp,R);
-		cout<<size;
-		
-		while(flag)
-		{
-			a=122;	
-		for (i=0;i<R;i++)        
-        {
-        	
-        		if(strlen(S[i])==size)
-        		{
-        			strcpy(required,S[i]);
-        			flag=0;
-        			break;
-        		}	
-        		else if(strlen(S[i])>size)
-        		{	
-        			if((int)S[i][size+1]<=a);
-        			{	
-        				size++;
-        				a=(int)S[i][size+1];
-
-
-        			}	
-        		}			
-        	
-
-
-        }
-        }
-        cout<<required<<"\n";
-
-
-
-	}
-
-}
-
-int compare(char s[][11],char *temp,int R)
-{
-	int n,i,j,tsize,size;
-
-	for(i=0;i<R;i++)
-	{
-		n=strlen(temp);
-
-		for(j=0;j<n;j++)
-		{
-			if(s[i][j]==temp[j])
-				tsize++;
-			else
-				break;		
-		}
-
-		if(tsize>size)
-			size=tsize;
-
-	}	
-	return size;
-
+		cout<<q.pop()<<endl;
+		cout<<q.pop()<<endl;
+		q.push(n);
+		q.push(n+1);
+		q.push(n*n);
+		cout<<q.pop()<<endl;
+		q.printstack();
 }
